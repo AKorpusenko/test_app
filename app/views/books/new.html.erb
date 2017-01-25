@@ -1,0 +1,13 @@
+<h1>Creating book</h1>
+<%= form_for @book, url: books_path do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+  	<%= f.file_field :image%>
+  </p>
+  <p>
+    <%= f.submit "Create Book" %>
+  </p>
+<% end %>
