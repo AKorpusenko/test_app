@@ -2,7 +2,12 @@
 <%= form_for @book, url: books_path do |f| %>
   <p>
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, required: true%>
+  </p>
+  
+  <p>
+    <%= f.label :authors %> <br>
+    <%= f.text_field :authors, :value => '' %>
   </p>
   <p>
   	<%= f.file_field :image%>

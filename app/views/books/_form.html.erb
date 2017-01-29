@@ -3,6 +3,21 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
+  <p>
+  <!-- Getting string of all authors and put it to text_field -->
+    <% author_str = '' %>
+    <% db_authors = Authorship.where(book_id: @book.id) %>
+    <% last_author_id = Authorship.where(book_id: @book.id).last.author_id %>
+    <% last_db_author = Author.find_by(id: last_author_id) %>
+    <% db_authors.each do |a| %> 
+      <% tmp_author = Author.find_by(id: a.author_id) %>
+      <% author_str += tmp_author.name %>
+      <% author_str += ', ' if tmp_author != last_db_author%>
+    <% end %>
+
+    <%= f.label :authors %> <br>
+    <%= f.text_field :authors, required: true, :value => author_str %>
+  </p>
   <%= f.file_field :image %>
   <p><%= f.submit %></p>
 <% end %>

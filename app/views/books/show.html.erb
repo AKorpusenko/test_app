@@ -1,2 +1,16 @@
-<h1>Book name: <%= @book.name %> </h1>
+<h1>Book name: "<%= @book.name %>" </h1>
 <%= image_tag @book.image.url(:medium) %>
+
+<% db_authors = Authorship.where(book_id: @book.id) %>
+<% last_author_id = Authorship.where(book_id: @book.id).last.author_id %>
+<% last_db_author = Author.find_by(id: last_author_id) %>
+<% db_authors.each do |a| %> 
+  <% tmp_author = Author.find_by(id: a.author_id) %>
+  <% if tmp_author != nil %>
+  	<%= link_to tmp_author.name, :controller => 'authors', :action => :show, :id => tmp_author.id %>
+  <% end %>
+<% end %>
+</br>
+<%= link_to 'Back', books_path, :class => "btn btn-default" %>
+<%= link_to 'Edit', edit_book_path, :class => "btn btn-default" %>
+

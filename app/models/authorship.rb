@@ -1,4 +1,4 @@
 class Authorship < ApplicationRecord
 	belongs_to :book
-	belong_to :author
+	belongs_to :author
 end

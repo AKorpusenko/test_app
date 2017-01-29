@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">			
+			<h1>Creating author</h1>
+			<%= form_for @author, url: authors_path do |f| %>
+			  <p>
+			    <%= f.label :name, :class => "control-label" %><br>
+			    <%= f.text_field :name, required: true, class: :"form-control", id: :"inputSuccess1" %>
+			  </p>
+			  <p>
+			    <%= f.submit "Create author", class: :'btn btn-primary btn-block' %>
+			  </p>
+			<% end %>
+		</div>
+	</div>
+</div>

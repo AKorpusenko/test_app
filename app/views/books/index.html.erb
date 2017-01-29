@@ -7,6 +7,7 @@
 				<th>ID</th>
 				<th>Name</th>
 				<th>Cover</th>
+				<th>Authors</th>
 				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
@@ -17,6 +18,16 @@
 		    	<th scope="row"><%= book.id %></th>
 		    	<td><%= link_to book.name, book_path(book), method: :get %></td>
 		    	<td> <%= image_tag book.image.url(:thumb)%> </td>
+		    	<td>
+		    		<% arr = Authorship.where(book_id: book.id) %>
+		    		<% arr.each do |a| %>
+		    			<% tmp_author = Author.find_by(id: a.author_id) %>
+		    			<% if tmp_author != nil %>
+						  	<%= link_to tmp_author.name, :controller => 'authors', :action => :show, :id => tmp_author.id %>
+						  	</br>
+  						<% end %>
+		    		<% end %>
+		    	</td>
 		    	<td><%= link_to 'Edit', [:edit, book] %></td>
 		    	<td><%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		    </tr>

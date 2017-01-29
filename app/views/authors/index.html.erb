@@ -1,0 +1,27 @@
+<div class="container ">
+<div class="col-md-12">
+		<h1>The authors list:</h1>
+		<table class="table table-striped">
+			<thead class="thead thead-inverse">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+			  <% @authors.each do |author| %>
+			    <tr>
+			    	<th scope="row"><%= author.id %></th>
+			    	<td><%= link_to author.name, author_path(author), method: :get %></td>
+			    	<td><%= link_to 'Edit', [:edit, author] %></td>
+			    	<td><%= link_to 'Destroy', author_path(author), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			    </tr>
+			    <br/>
+			  <% end %>
+			</tbody>
+		</table>
+		<%= link_to 'New', new_author_path, class: :'btn btn-primary btn-block' %>
+	</div>
+</div>
