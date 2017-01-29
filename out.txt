@@ -1,1 +1,0 @@
-{"id":4,"name":"AAA","image_url":"/system/books/images/000/000/004/medium/photo_2017-01-04_23-17-04.jpg?1485640047","book_authors":["A","B"]}

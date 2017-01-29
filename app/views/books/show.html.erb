@@ -4,6 +4,7 @@
 			<h1>Book name: </br>"<%= @book.name %>" </h1>
 			<%= image_tag @book.image.url(:medium) %>
 			</br>
+			<h4>Authors:</h4>
 			<ul>
 				<% db_authors = Authorship.where(book_id: @book.id) %>
 				<% last_author_id = Authorship.where(book_id: @book.id).last.author_id %>
