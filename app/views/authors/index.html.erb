@@ -1,11 +1,11 @@
-<div class="container ">
-<div class="col-md-12">
+<div class="container well clearfix">
 		<h1>The authors list:</h1>
 		<table class="table table-striped">
 			<thead class="thead thead-inverse">
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
+					<th>Books</th>
 					<th>Edit</th>
 					<th>Delete</th>
 				</tr>
@@ -15,13 +15,26 @@
 			    <tr>
 			    	<th scope="row"><%= author.id %></th>
 			    	<td><%= link_to author.name, author_path(author), method: :get %></td>
+			    	<td>
+			    		<ul>
+				    		<% arr = Authorship.where(author_id: author.id) %>
+				    		<% arr.each do |b| %>
+				    			<% tmp_book = Book.find_by(id: b.book_id) %>
+				    			<% if tmp_book != nil %>
+								  	<li><%= link_to tmp_book.name, :controller => 'books', :action => :show, :id => tmp_book.id %></li>
+		  						<% end %>
+				    		<% end %>
+				    	</ul>
+		    		</td>
 			    	<td><%= link_to 'Edit', [:edit, author] %></td>
 			    	<td><%= link_to 'Destroy', author_path(author), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			    </tr>
-			    <br/>
+			    <br/> 
 			  <% end %>
 			</tbody>
 		</table>
 		<%= link_to 'New', new_author_path, class: :'btn btn-primary btn-block' %>
-	</div>
 </div>
+</br>
+</br>
+</br>

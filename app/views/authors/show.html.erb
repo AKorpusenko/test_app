@@ -1,5 +1,21 @@
-<h1>Author name: <%= @author.name %> </h1>
-</br>
-<%= link_to 'Back', authors_path, :class => "btn btn-default" %>
-<%= link_to 'Edit', edit_author_path, :class => "btn btn-default" %>
-
+<div class="container well clearfix">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">			
+			<h1>Author name: <%= @author.name %> </h1>
+			<ul>
+				<% db_books = Authorship.where(author_id: @author.id) %>
+				<% last_book_id = Authorship.where(author_id: @author.id).last.book_id %>
+				<% last_db_book = Book.find_by(id: last_book_id) %>
+				<% db_books.each do |b| %> 
+				  <% tmp_book = Book.find_by(id: b.book_id) %>
+				  <% if tmp_book != nil %>
+				  	<li><%= link_to tmp_book.name, :controller => 'books', :action => :show, :id => tmp_book.id %></li>
+				  <% end %>
+				<% end %>
+			</ul>
+			</br>
+			<%= link_to 'Edit', edit_author_path, class: :'btn btn-primary btn-block' %>
+			<%= link_to 'Back', authors_path, class: :'btn btn-primary btn-block' %>
+		</div>
+	</div>
+</div>

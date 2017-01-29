@@ -1,7 +1,7 @@
 <%= form_for @book, :html => { :multipart => true} do |f| %>
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label :name, :class => "control-label" %><br />
+    <%= f.text_field :name, class: :"form-control", id: :"inputSuccess1" %>
   </p>
   <p>
   <!-- Getting string of all authors and put it to text_field -->
@@ -15,9 +15,10 @@
       <% author_str += ', ' if tmp_author != last_db_author%>
     <% end %>
 
-    <%= f.label :authors %> <br>
-    <%= f.text_field :authors, required: true, :value => author_str %>
+    <%= f.label :authors, class: :"control-label" %> <br>
+    <%= f.text_field :authors, required: true, :value => author_str, class: :"form-control", id: :"inputSuccess1" %>
   </p>
-  <%= f.file_field :image %>
-  <p><%= f.submit %></p>
+  <%= f.file_field :image, id: :"upload-btn", class: :'btn btn-primary btn-block' %>
+  </br>
+  <p><%= f.submit nil, class: :'btn btn-primary btn-block' %></p>
 <% end %>

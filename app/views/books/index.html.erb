@@ -1,5 +1,4 @@
-
-<div class="container ">
+<div class="container well clearfix">
 	<h1>The books list:</h1> 
 	<table class="table table-striped">
 		<thead class="thead thead-inverse">
@@ -19,14 +18,15 @@
 		    	<td><%= link_to book.name, book_path(book), method: :get %></td>
 		    	<td> <%= image_tag book.image.url(:thumb)%> </td>
 		    	<td>
-		    		<% arr = Authorship.where(book_id: book.id) %>
-		    		<% arr.each do |a| %>
-		    			<% tmp_author = Author.find_by(id: a.author_id) %>
-		    			<% if tmp_author != nil %>
-						  	<%= link_to tmp_author.name, :controller => 'authors', :action => :show, :id => tmp_author.id %>
-						  	</br>
-  						<% end %>
-		    		<% end %>
+			    	<ul>
+			    		<% arr = Authorship.where(book_id: book.id) %>
+			    		<% arr.each do |a| %>
+			    			<% tmp_author = Author.find_by(id: a.author_id) %>
+			    			<% if tmp_author != nil %>
+							  	<li><%= link_to tmp_author.name, :controller => 'authors', :action => :show, :id => tmp_author.id %></li>
+	  						<% end %>
+			    		<% end %>
+			    	</ul>
 		    	</td>
 		    	<td><%= link_to 'Edit', [:edit, book] %></td>
 		    	<td><%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -35,6 +35,8 @@
 		  <% end %>
 		</tbody>
 	</table>
-	<%= link_to 'New', new_book_path, :class => "btn btn-default offset2"%>
-
+	<%= link_to 'New', new_book_path, class: :'btn btn-primary btn-block' %>
 </div>
+</br>
+</br>
+</br>
